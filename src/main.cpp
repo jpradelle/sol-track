@@ -144,7 +144,7 @@ bool controlMotor(int sensorPin1, int sensorPin2, int motorDirPin, int motorPwmP
         targetValues[1] = targetValues[0];
         targetValues[0] = {runningTime, abs(input1 - input2)};
       }
-      if (targetValues[2].time >= 0 && targetValues[0].value – NOISE_MARGIN > targetValues[2].value) {
+      if (targetValues[2].time >= 0 && targetValues[0].value - NOISE_MARGIN > targetValues[2].value) {
         #ifdef DEBUG
           Serial.println("Moving in wrong direction, STOP");
         #endif
