@@ -34,7 +34,7 @@
 // Long run from evening to morning (ms)
 #define LONG_RUN_TIME 10000
 // Minimum diff between sensors values to stop long run
-#define LONG_RUN_MIN_SENSOR_DIFF 3
+#define LONG_RUN_MIN_SENSOR_DIFF 4
 
 // Change motor direction (0 or 1)
 #define LEFT_RIGHT_DIRECTION 1
