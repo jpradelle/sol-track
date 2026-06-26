@@ -31,7 +31,7 @@
 // Minimum diff between sensors values to enable control
 #define MIN_SENSOR_DIFF 3
 
-// Long run from evening to morning (ms)
+// Long run from evening back to morning position (ms)
 #define LONG_RUN_TIME 10000
 // Minimum diff between sensors values to stop long run
 #define LONG_RUN_MIN_SENSOR_DIFF 4
@@ -137,7 +137,7 @@ bool controlMotor(int sensorPin1, int sensorPin2, int motorDirPin, int motorPwmP
         Serial.println(input2);
       #endif
 
-      // Ensure diff between input1 and input2 if decreasing over time
+      // Ensure diff between input1 and input2 is decreasing over time
       if (runningTime - targetValues[0].time >= 1000) {
         // Store value every second in 3 last values history
         targetValues[2] = targetValues[1];
@@ -164,7 +164,10 @@ bool controlMotor(int sensorPin1, int sensorPin2, int motorDirPin, int motorPwmP
         }
       }
 
-      // Long run stop
+      /*
+       * Long run stop
+       * When going back to morning position, we want to mix left/right and bottom/up move by steps
+       */
       if (runningTime > LONG_RUN_TIME && !(target < 0 && input1 + LONG_RUN_MIN_SENSOR_DIFF < input2 || target > 0 && input1 > input2 + LONG_RUN_MIN_SENSOR_DIFF)) {
         #ifdef DEBUG
           Serial.print("Stop (Long run)");
